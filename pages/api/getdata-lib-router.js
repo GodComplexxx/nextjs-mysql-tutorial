@@ -4,7 +4,7 @@ export default async function handler(req, res) {
   const id = req.body.id;
   try {
     const querySql =
-      "SELECT productid, productname, productimage FROM products WHERE productid = ?";
+      "SELECT productid, productname, productdescription FROM products WHERE productid = ?";
     const valueParams = [id];
     const data = await query({ query: querySql, values: valueParams });
 

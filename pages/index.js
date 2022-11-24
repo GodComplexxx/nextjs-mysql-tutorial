@@ -2,18 +2,18 @@ import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.scss";
 
 export default function Home() {
-  const [dataResponse, setdataResponse] = useState([]);
+const [dataResponse, setdataResponse] = useState([]);
 
-  useEffect(() => {
-    async function getPageData() {
-      const apiUrlEndpoint = `http://localhost:3000/api/getdata-lib`;
-      const response = await fetch(apiUrlEndpoint);
-      const res = await response.json();
-      console.log(res.products);
-      setdataResponse(res.products);
-    }
-    getPageData();
-  }, []);
+//   useEffect(() => {
+//     async function getPageData() {
+//       const apiUrlEndpoint = `http://localhost:3000/api/getdata-lib`;
+//       const response = await fetch(apiUrlEndpoint);
+//       const res = await response.json();
+//       console.log(res.products);
+//       setdataResponse(res.products);
+//     }
+//     getPageData();
+//   }, []);
   return (
     <div className={styles.container}>
       {dataResponse.map((product) => {
@@ -28,4 +28,8 @@ export default function Home() {
       })}
     </div>
   );
+}
+export async function getServerSideprops() {
+  const res = await fetch('http://localhost:3000/api/getdata-lib')
+  const dataResponse = await res.json()
 }
